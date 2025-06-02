@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'fabric-loom' version '+'
+}
+
+group = 'ziyue'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url "https://maven.shedaniel.me/" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.20.4"
+    mappings "net.fabricmc:yarn:1.20.4+build.3:v2"
+    modImplementation "me.shedaniel.cloth:cloth-config-fabric:13.0.138"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 8
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+    }
+}
+
+tasks.withType(GenerateModuleMetadata).configureEach {
+    enabled = false
+}
